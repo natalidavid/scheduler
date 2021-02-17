@@ -139,6 +139,7 @@ storiesOf("Appointment", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
+
   .add("Appointment", () => <Appointment />)
   .add("Appointment Empty", () => (
     <Fragment>
@@ -146,6 +147,7 @@ storiesOf("Appointment", module)
       <Appointment id="last" time="1pm" />
     </Fragment>
   ))
+  
   .add("Appointment Booked", () => (
     <Fragment>
       <Appointment
@@ -156,8 +158,6 @@ storiesOf("Appointment", module)
       <Appointment id="last" time="1pm" />
     </Fragment>
   ))
-
-
 
   .add("Header", () => <Header time="12pm" />)
   .add("Empty", () => <Empty onAdd={action("onAdd")} />)
