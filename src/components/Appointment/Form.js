@@ -15,14 +15,16 @@ export default function Form(props) {
   const cancel = () => {
     reset();
     props.onCancel();
-  }
+  };
 
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
-        <form autoComplete="off">
+        <form
+          autoComplete="off"
+          onSubmit={event => event.preventDefault()}>
+            
           <input
-            onSubmit={event => event.preventDefault()}
             className="appointment__create-input text--semi-bold"
             value={name}
             type="text"
