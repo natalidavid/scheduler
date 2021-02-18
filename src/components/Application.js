@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 
 import DayList from "components/DayList";
 import "components/Application.scss";
+import "components/Appointment";
+import Appointment from "components/Appointment";
 
 const appointments = [
   {
@@ -50,27 +53,25 @@ const appointments = [
   },
 ];
 
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
-  },
-];
-
 export default function Application(props) {
+  const [days, setDays] = useState([]);
 
-  const [day, setDay] = useState("Monday");
+  useEffect(() => {
+    const url = `/api/days`;
+    axios.get(url).then(response => {
+      setDays(response.data);
+    });
+  }, [days]) 
+  
+  const mappedApts = appointments.map(app => {
+    return (
+      <Appointment
+        key={app.id}
+        {...app}
+      />
+    );
+  });
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -84,10 +85,9 @@ export default function Application(props) {
         <nav className="sidebar__menu">
           <DayList
             days={days}
-            day={day}
-            setDay={setDay}
+            day={"Monday"}
+            setDay={days => console.log(days)}
           />
-
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
@@ -96,7 +96,11 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
+        {mappedApts}
+        <Appointment
+          key="last"
+          time="5pm"
+        />
       </section>
     </main>
   );
