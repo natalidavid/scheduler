@@ -11,7 +11,8 @@ export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointments: {}
+    appointments: {},
+    interviewers: {}
   });
 
   const dailyAppointments = [];
@@ -44,13 +45,18 @@ export default function Application(props) {
 
   // axios.get(url).then(response => setDays(response.data));
 
-  const appointments = getAppointmentsForDay(state, state.day)
+  const appointments = getAppointmentsForDay(state, state.day);
 
-  const mappedApts = appointments.map(app => {
+  const mappedApts = appointments.map(appointment => {
+    const interview = getInterview(state, appointment.interview);
+
     return (
       <Appointment
-        key={app.id}
-        {...app}
+        key={appointment.id}
+        {...appointment}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
       />
     );
   });
