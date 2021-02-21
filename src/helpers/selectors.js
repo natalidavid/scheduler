@@ -3,7 +3,7 @@ export function getAppointmentsForDay(state, day) {
   const foundDay = state.days.find(days => days.name === day);
 
   //as soon as falsy case hits, we are returning it, else truthy
-  if (state.days.length === 0 || !foundDay === undefined) {
+  if (state.days.length === 0 || foundDay === undefined) {
     return [];
   }
   //map takes param, individual items, does something with it + return
@@ -18,4 +18,13 @@ export function getInterview(state, interview) {
   }
   const interviewer = state.interviewers[interview.interviewer];
   return { ...interview, interviewer };
+}
+
+export function getInterviewersForDay(state, day) {
+  const foundDay = state.days.find(days => days.name === day);
+  
+  if (state.days.length === 0 || foundDay === undefined) {
+    return [];
+  }
+  return foundDay.interviewers.map((id) => state.interviewers[id]);
 }
