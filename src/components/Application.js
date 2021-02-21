@@ -79,7 +79,6 @@ export default function Application(props) {
       });
   }
 
-
   // axios.get(url).then(response => setDays(response.data));
 
   const appointments = getAppointmentsForDay(state, state.day);
