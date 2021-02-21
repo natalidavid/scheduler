@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+const  { useState } = require ("react");
 
 export default function useVisualMode(initial) {
   const [history, setHistory] = useState([initial]); //array with initial value
