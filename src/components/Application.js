@@ -43,6 +43,8 @@ export default function Application(props) {
     });
   }, []);
 
+  // Interviews: Create, Delete,Edit:
+
   function bookInterview(id, interview) {
 
     const appointment = {
@@ -60,9 +62,23 @@ export default function Application(props) {
       .then(() => {
         setState({ ...state, appointments });
       });
-
-    // console.log("id & interview", id, interview);
   }
+
+  // deleting interviews
+  function cancelInterview (id, interview) {
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+
+    const url = `/api/appointments/${id}`;
+    return axios.delete(url, { interview })
+      .then(() => {
+        setState({ ...state, appointment });
+      });
+  }
+
 
   // axios.get(url).then(response => setDays(response.data));
 
@@ -74,13 +90,14 @@ export default function Application(props) {
 
     return (
       <Appointment
-        bookInterview={bookInterview}
-        key={appointment.id}
-        {...appointment}
-        id={appointment.id}
-        time={appointment.time}
-        interview={interview}
-        interviewers={interviewers}
+      key={appointment.id}
+      {...appointment}
+      id={appointment.id}
+      time={appointment.time}
+      interview={interview}
+      interviewers={interviewers}
+      bookInterview={bookInterview}
+      cancelInterview={cancelInterview}
       />
     );
   });
