@@ -22,9 +22,8 @@ export default function useVisualMode(initial) {
         [...prev.slice(0, prev.length - 1)]
       );
     };
-
   };
 
   const mode = history[history.length - 1];
-  return { mode: mode, transition, back };
+  return { mode, transition, back };
 };

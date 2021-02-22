@@ -39,7 +39,7 @@ export default function Application(props) {
       const interviewers = all[2].data;
       console.log("all", all);
 
-      setState(prev => ({ ...prev, days, appointments, interviewers }));
+      setState(({ ...state, days, appointments, interviewers }));
     });
   }, []);
 
@@ -61,11 +61,12 @@ export default function Application(props) {
     return axios.put(url, { interview })
       .then(() => {
         setState({ ...state, appointments });
-      });
+      })
+      .catch(error => console.log(error));
   }
 
   // deleting interviews
-  function cancelInterview (id, interview) {
+  function cancelInterview(id, interview) {
 
     const appointment = {
       ...state.appointments[id],
@@ -76,7 +77,8 @@ export default function Application(props) {
     return axios.delete(url, { interview })
       .then(() => {
         setState({ ...state, appointment });
-      });
+      })
+      .catch(error => console.log(error));
   }
 
   // axios.get(url).then(response => setDays(response.data));
@@ -89,14 +91,14 @@ export default function Application(props) {
 
     return (
       <Appointment
-      key={appointment.id}
-      {...appointment}
-      id={appointment.id}
-      time={appointment.time}
-      interview={interview}
-      interviewers={interviewers}
-      bookInterview={bookInterview}
-      cancelInterview={cancelInterview}
+        key={appointment.id}
+        {...appointment}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+        interviewers={interviewers}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });
