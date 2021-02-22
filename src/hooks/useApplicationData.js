@@ -12,27 +12,30 @@ export default function useApplicationData(props) {
 
   const setDay = day => setState({ ...state, day });
 
-  useEffect(() => {
-
+  const updateState = function () {
     const urlDays = `/api/days`;
     const urlAppointments = `/api/appointments`;
     const urlInterviewers = `/api/interviewers`;
 
-    Promise.all([
+    return Promise.all([
       axios.get(urlDays),
       axios.get(urlAppointments),
       axios.get(urlInterviewers)
+    ])
+      .then((all) => {
+        const days = all[0].data;
+        const appointments = all[1].data;
+        const interviewers = all[2].data;
+        console.log("all", all);
 
-    ]).then((all) => {
-      const days = all[0].data;
-      const appointments = all[1].data;
-      const interviewers = all[2].data;
-      console.log("all", all);
+        setState(prev => ({ ...prev, days, appointments, interviewers }));
+      });
+  };
 
-      setState(prev => ({ ...prev, days, appointments, interviewers }));
-    });
+  // document ready
+  useEffect(() => {
+    updateState();
   }, []);
-
 
   // Interviews: Create, Delete, Edit:
   function bookInterview(id, interview) {
@@ -52,6 +55,7 @@ export default function useApplicationData(props) {
       .then(() => {
         setState({ ...state, appointments });
       })
+      .then(() => { return updateState(); })
       .catch(error => console.log(error));
   }
 
@@ -68,9 +72,9 @@ export default function useApplicationData(props) {
       .then(() => {
         setState({ ...state, appointment });
       })
+      .then(() => { return updateState(); })
       .catch(error => console.log(error));
   }
-
 
   return {
     state,
