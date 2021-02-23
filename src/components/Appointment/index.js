@@ -26,9 +26,9 @@ export default function Appointment(props) {
   );
 
   function save(name, interviewer) {
-    if (!name || !interviewer) {
-      return console.log("Name or interviewer not selected");
-    }
+    // if (!name || !interviewer) {
+    //   return console.log("Name or interviewer not selected");
+    // }
     const interview = {
       student: name,
       interviewer
