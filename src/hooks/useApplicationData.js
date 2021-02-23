@@ -11,7 +11,6 @@ export default function useApplicationData(props) {
 
   const setDay = (day) => setState({ ...state, day });
 
-  // document ready
   useEffect(() => {
     const urlDays = `/api/days`;
     const urlAppointments = `/api/appointments`;
@@ -32,8 +31,6 @@ export default function useApplicationData(props) {
     });
   }, []);
 
-
-  //find only returns one thing
   const getSpotsForDay = function (day, appointments) {
     let spots = 0;
     for (const id of day.appointments) {
@@ -46,7 +43,6 @@ export default function useApplicationData(props) {
   };
 
   const updateSpots = function (dayName, days, appointments) {
-    //find the day object
     const day = days.find((d) => d.name === dayName);
     const spots = getSpotsForDay(day, appointments);
     return days.map((item) =>
@@ -54,7 +50,7 @@ export default function useApplicationData(props) {
     );
   };
 
-  // Interviews: Create, Delete, Edit:
+  // Interviews: Create, Edit:
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -72,10 +68,9 @@ export default function useApplicationData(props) {
         const days = updateSpots(state.day, state.days, appointments)
         setState({ ...state, appointments, days });
       });
-
   };
 
-  // deleting interviews
+  // Deleting interviews
   function cancelInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
