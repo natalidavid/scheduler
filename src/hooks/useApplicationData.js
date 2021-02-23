@@ -25,7 +25,6 @@ export default function useApplicationData(props) {
       const days = all[0].data;
       const appointments = all[1].data;
       const interviewers = all[2].data;
-      console.log("all", all);
 
       setState(prev => ({ ...prev, days, appointments, interviewers }));
     });
