@@ -4,29 +4,40 @@
 
 \
 \
-```Front Page:
+```sh
+Front Page:```
+
 \
 \
 ![Front Page](https://github.com/natalidavid/scheduler/blob/master/data/front-page.jpg)
-```
+
 \
 \
-\
-```Create Appointment:```
+
+
+```sh
+Create Appointment:```
+
 \
 \
 ![Create](https://github.com/natalidavid/scheduler/blob/master/data/create.gif)
 \
 \
-\
-```Edit Appointment:```
+
+
+```sh
+Edit Appointment:```
+
 \
 \
 ![Edit](https://github.com/natalidavid/scheduler/blob/master/data/edit.gif)
 \
 \
-\
-``` Delete Appointment: ```
+
+
+```sh
+Delete Appointment: ```
+
 \
 \
 ![Delete](https://github.com/natalidavid/scheduler/blob/master/data/delete.gif)
