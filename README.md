@@ -4,8 +4,8 @@
 
 \
 \
-```sh
-Front Page:```
+
+```Front Page:```
 
 \
 \
@@ -13,30 +13,27 @@ Front Page:```
 
 \
 \
+\
 
-
-```sh
-Create Appointment:```
+```Create Appointment:```
 
 \
 \
 ![Create](https://github.com/natalidavid/scheduler/blob/master/data/create.gif)
 \
 \
+\
 
-
-```sh
-Edit Appointment:```
+```Edit Appointment:```
 
 \
 \
 ![Edit](https://github.com/natalidavid/scheduler/blob/master/data/edit.gif)
 \
 \
+\
 
-
-```sh
-Delete Appointment: ```
+```Delete Appointment: ```
 
 \
 \
