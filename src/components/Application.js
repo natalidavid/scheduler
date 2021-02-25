@@ -5,21 +5,24 @@ import "components/Appointment";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
 import useApplicationData from "../hooks/useApplicationData.js";
-import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
+import {
+  getAppointmentsForDay,
+  getInterview,
+  getInterviewersForDay,
+} from "helpers/selectors";
 
 export default function Application(props) {
   const {
     state,
     setDay,
     bookInterview,
-    cancelInterview
+    cancelInterview,
   } = useApplicationData();
 
   const appointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
 
-  const mappedApts = appointments.map(appointment => {
-
+  const mappedApts = appointments.map((appointment) => {
     return (
       <Appointment
         key={appointment.id}
@@ -44,11 +47,7 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList
-            days={state.days}
-            day={state.day}
-            setDay={setDay}
-          />
+          <DayList days={state.days} day={state.day} setDay={setDay} />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
@@ -58,11 +57,8 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {mappedApts}
-        <Appointment
-          key="last"
-          time="5pm"
-        />
+        <Appointment key="last" time="5pm" />
       </section>
     </main>
   );
-};
+}

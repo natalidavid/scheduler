@@ -19,14 +19,13 @@ export default function useApplicationData(props) {
     Promise.all([
       axios.get(urlDays),
       axios.get(urlAppointments),
-      axios.get(urlInterviewers)
-
+      axios.get(urlInterviewers),
     ]).then((all) => {
       const days = all[0].data;
       const appointments = all[1].data;
       const interviewers = all[2].data;
 
-      setState(prev => ({ ...prev, days, appointments, interviewers }));
+      setState((prev) => ({ ...prev, days, appointments, interviewers }));
     });
   }, []);
 
@@ -62,12 +61,11 @@ export default function useApplicationData(props) {
     };
 
     const url = `/api/appointments/${id}`;
-    return axios.put(url, { interview })
-      .then(() => {
-        const days = updateSpots(state.day, state.days, appointments)
-        setState({ ...state, appointments, days });
-      });
-  };
+    return axios.put(url, { interview }).then(() => {
+      const days = updateSpots(state.day, state.days, appointments);
+      setState({ ...state, appointments, days });
+    });
+  }
 
   // Deleting interviews
   function cancelInterview(id, interview) {
@@ -82,9 +80,8 @@ export default function useApplicationData(props) {
     };
 
     const url = `/api/appointments/${id}`;
-    return axios.delete(url)
-    .then(() => {
-      const days = updateSpots(state.day, state.days, appointments)
+    return axios.delete(url).then(() => {
+      const days = updateSpots(state.day, state.days, appointments);
       setState({ ...state, appointments, days });
     });
   }

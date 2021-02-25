@@ -96,6 +96,5 @@ export default {
       status: 204,
       statusText: "No Content",
     });
-  })
-
+  }),
 };

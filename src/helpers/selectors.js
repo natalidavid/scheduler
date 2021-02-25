@@ -1,6 +1,6 @@
 export function getAppointmentsForDay(state, day) {
   //find - only 1 element
-  const foundDay = state.days.find(days => days.name === day);
+  const foundDay = state.days.find((days) => days.name === day);
 
   //as soon as falsy case hits, we are returning it, else truthy
   if (state.days.length === 0 || foundDay === undefined) {
@@ -21,8 +21,8 @@ export function getInterview(state, interview) {
 }
 
 export function getInterviewersForDay(state, day) {
-  const foundDay = state.days.find(days => days.name === day);
-  
+  const foundDay = state.days.find((days) => days.name === day);
+
   if (state.days.length === 0 || foundDay === undefined) {
     return [];
   }
