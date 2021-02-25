@@ -17,8 +17,6 @@ import { fireEvent } from "@testing-library/react/dist";
 
 import Application from "components/Application";
 
-import { func } from "prop-types";
-
 import axios from "axios";
 
 afterEach(cleanup);
@@ -121,7 +119,7 @@ describe("Application", () => {
     fireEvent.click(getByText(appointment, "Save"));
   
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
-    
+
     const day = getAllByTestId(container, "day").find((day) =>
       queryByText(day, "Monday")
     );
