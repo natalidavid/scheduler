@@ -18,8 +18,8 @@ export default function Form(props) {
   };
 
   function validate() {
-    if (name === "") {
-      setError("Student name cannot be blank");
+    if (name === "" || !interviewer) {
+      setError("Student or interviewer name cannot be blank");
       return;
     }
     setError("");
@@ -54,7 +54,6 @@ export default function Form(props) {
           </Button>
           <Button
             confirm
-            // onClick={() => props.onSave(name, interviewer)}
             onClick={validate}
           >
             Save
